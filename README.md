@@ -88,9 +88,9 @@ Give Kibana a few seconds to initialize, then access the Kibana web UI by hittin
 [http://localhost:5601](http://localhost:5601) with a web browser.
 
 By default, the stack exposes the following ports:
-* 5000: Logstash TCP input.
+* 5044: Logstash TCP input.
 * 9200: Elasticsearch HTTP
-* 9300: Elasticsearch TCP transport
+* 9201: Elasticsearch TCP transport
 * 5601: Kibana
 
 **WARNING**: If you're using `boot2docker`, you must access it via the `boot2docker` IP address instead of `localhost`.
@@ -102,7 +102,7 @@ Now that the stack is running, you will want to inject some log entries. The shi
 to send content via TCP:
 
 ```console
-$ nc localhost 5000 < /path/to/logfile.log
+$ nc localhost 5044 < /path/to/logfile.log
 ```
 
 ## Initial setup
