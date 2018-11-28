@@ -48,7 +48,31 @@ services:
       - elk
     depends_on:
       - elasticsearch
-
+  zipkin:
+    image: openzipkin/zipkin:2
+    container_name: zipkin_2
+    ports:
+      - 9411:9411
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=elasticsearch:9200
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+      
+  zipkin-dependencies:
+    image: openzipkin/zipkin-dependencies:2
+    container_name: zipkin-dependencies_2
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=elasticsearch:9200
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+      
 networks:
 
   elk:
